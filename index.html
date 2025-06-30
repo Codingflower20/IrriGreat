@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Observer Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🌿 EcoStream: Live Plant Monitoring</h1>
+  </header>
+
+  <section class="data-grid" id="data-container">
+    <!-- Data will be injected here by JavaScript -->
+  </section>
+  <section id="charts">
+    <canvas id="tempChart"></canvas>
+    <canvas id="humidityChart"></canvas>
+    <canvas id="moistureChart"></canvas>
+    <canvas id="sunlightChart"></canvas>
+  </section>
+  
+  <section id="averages">
+    <h2>🌿 3-Sample Averages</h2>
+    <p id="avg-temp">Temperature Avg: -- °C</p>
+    <p id="avg-humidity">Humidity Avg: -- %</p>
+    <p id="avg-moisture">Moisture Avg: -- %</p>
+    <p id="avg-sunlight">Sunlight Avg: -- %</p>
+  </section>
+  
+  <footer>
+    <p>Powered by ESP32 · AWS · DynamoDB</p>
+  </footer>
+<!-- Add Chart.js CDN in HTML head (index.html) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
