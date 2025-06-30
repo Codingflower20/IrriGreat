@@ -43,7 +43,10 @@ async function fetchSensorData() {
     const container = document.getElementById("data-container");
     container.innerHTML = "";
 
-    data.forEach(item => {
+    // ➕ Only keep the latest 3 readings for the card display
+    const recentData = data.slice(-3); 
+
+    recentData.forEach(item => {
       const card = document.createElement("div");
       card.className = "data-card";
       card.innerHTML = `
@@ -56,7 +59,7 @@ async function fetchSensorData() {
       container.appendChild(card);
     });
 
-    // Update Charts
+    // 🎯 Still use full dataset for graphs and averages
     if (charts.tempChart) charts.tempChart.destroy();
     if (charts.humidityChart) charts.humidityChart.destroy();
     if (charts.moistureChart) charts.moistureChart.destroy();
@@ -67,10 +70,11 @@ async function fetchSensorData() {
     charts.moistureChart = createChart("moistureChart", "Moisture", data, "#33cc99");
     charts.sunlightChart = createChart("sunlightChart", "Sunlight", data, "#ffcc00");
 
-    showAverages(data);
+    showAverages(data); // averages from full data
   } catch (err) {
     console.error("Failed to fetch sensor data:", err);
   }
 }
+
 
 fetchSensorData();
