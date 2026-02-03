@@ -92,3 +92,30 @@ footer {
     font-size: 0.8rem;
     margin-top: 2rem;
 }
+/* Add to your existing CSS */
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.live-section {
+    text-align: center;
+    background: #181818;
+    padding: 2rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.data-card {
+    background: #1e1e1e;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 140px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.data-card h3 { font-size: 0.9rem; color: #aaa; margin-bottom: 5px; }
+
