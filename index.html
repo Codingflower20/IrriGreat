@@ -3,37 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiliconShakti Dashboard</title>
+  <title>SiliconShakti Full Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>🌿 SiliconShakti: AI Field Monitor</h1>
-    <p>Powered by VEGA RISC-V & AWS IoT</p>
+    <h1>🌿 SiliconShakti Field Monitor</h1>
+    <p>Live Environment & Soil Telemetry</p>
   </header>
 
-  <section class="data-grid" id="data-container">
-    </section>
+  <section class="live-section">
+      <h2>📡 Live Readings</h2>
+      <div class="data-grid" id="data-container">
+          <p>Loading...</p>
+      </div>
+  </section>
 
   <section id="charts">
-    <div class="chart-container"><canvas id="moistureChart"></canvas></div>
-    <div class="chart-container"><canvas id="nChart"></canvas></div>
-    <div class="chart-container"><canvas id="pChart"></canvas></div>
-    <div class="chart-container"><canvas id="kChart"></canvas></div>
-  </section>
-  
-  <section id="averages">
-    <h2>📊 Field Analysis (Last 10 Pts)</h2>
-    <div class="avg-grid">
-        <p id="avg-moisture">Moisture: -- %</p>
-        <p id="avg-n">Nitrogen: -- mg/kg</p>
-        <p id="avg-p">Phosphorus: -- mg/kg</p>
-        <p id="avg-k">Potassium: -- mg/kg</p>
+    <h2>📈 Environmental Trends</h2>
+    <div class="chart-grid">
+        <div class="chart-container"><canvas id="tempChart"></canvas></div>
+        <div class="chart-container"><canvas id="humChart"></canvas></div>
+        <div class="chart-container"><canvas id="sunChart"></canvas></div>
+    </div>
+
+    <h2>🌱 Soil Nutrient Analysis</h2>
+    <div class="chart-grid">
+        <div class="chart-container"><canvas id="moistChart"></canvas></div>
+        <div class="chart-container"><canvas id="nChart"></canvas></div>
+        <div class="chart-container"><canvas id="pChart"></canvas></div>
+        <div class="chart-container"><canvas id="kChart"></canvas></div>
     </div>
   </section>
-  
+
   <footer>
-    <p>SiliconShakti System · ESP32 · AWS Lambda · DynamoDB</p>
+    <p>Powered by VEGA RISC-V · AWS IoT · ESP32</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
