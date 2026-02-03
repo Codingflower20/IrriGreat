@@ -1,66 +1,94 @@
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4fdf6;
-    color: #222;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212; /* Dark Mode base */
+    color: #e0e0e0;
     margin: 0;
     padding: 0;
-  }
+}
   
-  header {
-    background-color: #2e8b57;
-    color: white;
-    padding: 1rem;
+header {
+    background: linear-gradient(135deg, #1f1f1f 0%, #2c2c2c 100%);
+    color: #bb86fc;
+    padding: 1.5rem;
     text-align: center;
-  }
+    border-bottom: 2px solid #333;
+}
+
+header h1 { margin: 0; font-weight: 300; letter-spacing: 1px; }
+header p { color: #888; font-size: 0.9rem; margin-top: 5px; text-transform: uppercase; }
   
-  .data-grid {
+.data-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 2rem;
-    gap: 1rem;
-  }
-  #charts {
-    max-width: 960px;
-    margin: 2rem auto;
+    gap: 1.5rem;
+}
+
+/* Charts Grid - 2x2 Layout */
+#charts {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
-  }
-  
-  canvas {
-    background-color: #fff;
+}
+
+.chart-container {
+    background-color: #1e1e1e;
     border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 0 6px rgba(0,0,0,0.08);
-  }
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    border: 1px solid #333;
+}
   
-  #averages {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: #e5f9ed;
+canvas { width: 100% !important; height: auto !important; }
+  
+#averages {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #1e1e1e;
     border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     text-align: center;
-  }
+    border: 1px solid #333;
+}
+
+.avg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.avg-grid p {
+    background: #2d2d2d;
+    padding: 10px;
+    border-radius: 8px;
+    color: #03dac6;
+    font-weight: bold;
+}
   
-  .data-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+/* Data Cards */
+.data-card {
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     padding: 1.5rem;
-    min-width: 280px;
-    transition: transform 0.2s;
-  }
-  .data-card:hover {
-    transform: scale(1.03);
-  }
-  
-  footer {
+    min-width: 200px;
+    border: 1px solid #333;
     text-align: center;
-    padding: 1rem;
-    background-color: #eef9f1;
-    font-size: 0.9em;
-  }
+}
+
+.data-card h3 { color: #bb86fc; font-size: 1rem; margin-bottom: 15px; }
+.data-card p { margin: 5px 0; font-size: 1.1rem; }
   
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #1f1f1f;
+    color: #555;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+}
