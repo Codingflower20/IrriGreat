@@ -3,38 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plant Observer Dashboard</title>
+  <title>SiliconShakti Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>🌿IrriGreat : Live Plant Monitoring</h1>
+    <h1>🌿 SiliconShakti: AI Field Monitor</h1>
+    <p>Powered by VEGA RISC-V & AWS IoT</p>
   </header>
 
   <section class="data-grid" id="data-container">
-    <!-- Data will be injected here by JavaScript -->
-  </section>
+    </section>
+
   <section id="charts">
-    <canvas id="tempChart"></canvas>
-    <canvas id="humidityChart"></canvas>
-    <canvas id="moistureChart"></canvas>
-    <canvas id="sunlightChart"></canvas>
+    <div class="chart-container"><canvas id="moistureChart"></canvas></div>
+    <div class="chart-container"><canvas id="nChart"></canvas></div>
+    <div class="chart-container"><canvas id="pChart"></canvas></div>
+    <div class="chart-container"><canvas id="kChart"></canvas></div>
   </section>
   
   <section id="averages">
-    <h2>🌿 3-Sample Averages</h2>
-    <p id="avg-temp">Temperature Avg: -- °C</p>
-    <p id="avg-humidity">Humidity Avg: -- %</p>
-    <p id="avg-moisture">Moisture Avg: -- %</p>
-    <p id="avg-sunlight">Sunlight Avg: -- %</p>
+    <h2>📊 Field Analysis (Last 10 Pts)</h2>
+    <div class="avg-grid">
+        <p id="avg-moisture">Moisture: -- %</p>
+        <p id="avg-n">Nitrogen: -- mg/kg</p>
+        <p id="avg-p">Phosphorus: -- mg/kg</p>
+        <p id="avg-k">Potassium: -- mg/kg</p>
+    </div>
   </section>
   
   <footer>
-    <p>Powered by ESP32 · AWS · DynamoDB</p>
+    <p>SiliconShakti System · ESP32 · AWS Lambda · DynamoDB</p>
   </footer>
-<!-- Add Chart.js CDN in HTML head (index.html) -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
