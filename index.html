@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IrriGreat Dashboard | Soft Green</title>
+    <title>SiliconShakti | IrriGreat Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -13,30 +13,32 @@
         <header>
             <div class="logo">
                 <span class="icon">🌿</span>
-                <h1>IrriGreat <span>Monitor</span></h1>
+                <h1>SiliconShakti <span>Field Monitor</span></h1>
             </div>
             <div class="system-status">
-                <span class="dot"></span> Online & Secure
+                <span class="dot"></span> System Live
             </div>
         </header>
 
         <section class="overview">
             <div class="section-title">
-                <h2>Live Field Telemetry</h2>
-                <p>Last updated: <span id="time-stamp">Just now</span></p>
+                <h2>📡 Real-time Sensor Array</h2>
+                <p>Last Data Sync: <span id="time-stamp">--:--:--</span></p>
             </div>
             <div class="data-grid" id="data-container">
-                </div>
+                <p>Establishing secure connection to AWS IoT...</p>
+            </div>
         </section>
 
         <section class="analytics">
-            <div class="chart-wrapper">
-                <h3>Soil & Moisture Trends</h3>
-                <div class="chart-container"><canvas id="moistChart"></canvas></div>
+            <div class="section-header">
+                <h2>📈 Historical Trends</h2>
             </div>
-            <div class="chart-wrapper">
-                <h3>Environmental Conditions</h3>
-                <div class="chart-container"><canvas id="tempChart"></canvas></div>
+            <div class="chart-flex-container">
+                <div class="chart-card"><h3>Temperature & Humidity</h3><canvas id="tempChart"></canvas></div>
+                <div class="chart-card"><h3>Light & Moisture</h3><canvas id="moistChart"></canvas></div>
+                <div class="chart-card"><h3>Nitrogen Content</h3><canvas id="nChart"></canvas></div>
+                <div class="chart-card"><h3>P & K Levels</h3><canvas id="pkChart"></canvas></div>
             </div>
         </section>
     </div>
