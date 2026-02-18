@@ -5,7 +5,6 @@ function updateChart(ctxId, label, dataArray, color) {
     const canvas = document.getElementById(ctxId);
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-
     if (charts[ctxId]) charts[ctxId].destroy();
 
     charts[ctxId] = new Chart(ctx, {
@@ -29,7 +28,7 @@ function updateChart(ctxId, label, dataArray, color) {
             plugins: { legend: { display: false } },
             scales: {
                 x: { display: false },
-                y: { grid: { color: '#f2f2f2' }, ticks: { font: { size: 9 } } }
+                y: { grid: { color: '#f5f5f5' }, ticks: { font: { size: 9 }, color: '#95a5a6' } }
             }
         }
     });
@@ -50,7 +49,7 @@ async function fetchSensorData() {
         updateChart("pChart", "P", data.p, "#e67e22");
         updateChart("kChart", "K", data.k, "#9b59b6");
 
-        // Update Live Cards
+        // Live Cards
         const container = document.getElementById("data-container");
         const metrics = [
             { l: "Temp", v: data.t[i], u: "°C" },
@@ -64,13 +63,13 @@ async function fetchSensorData() {
 
         container.innerHTML = metrics.map(m => `
             <div class="data-card">
-                <div style="font-size:0.7rem; color:#636e72;">${m.l}</div>
+                <div style="font-size:0.7rem; color:#95a5a6; text-transform:uppercase;">${m.l}</div>
                 <div class="value">${m.v}${m.u}</div>
             </div>
         `).join('');
 
         document.getElementById("time-stamp").innerText = new Date().toLocaleTimeString();
-    } catch (err) { console.error(err); }
+    } catch (err) { console.error("Sync Error:", err); }
 }
 
 setInterval(fetchSensorData, 30000);
