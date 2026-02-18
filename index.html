@@ -1,46 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiliconShakti Full Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SiliconShakti Full Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>🌿 SiliconShakti Field Monitor</h1>
-    <p>Live Environment & Soil Telemetry</p>
-  </header>
+    <header>
+        <h1>🌿 SiliconShakti Field Monitor</h1>
+        <p>Live Environment & Soil Telemetry | Powered by VEGA RISC-V</p>
+    </header>
 
-  <section class="live-section">
-      <h2>📡 Live Readings</h2>
-      <div class="data-grid" id="data-container">
-          <p>Loading...</p>
-      </div>
-  </section>
+    <section class="live-section">
+        <h2>📡 Live Readings</h2>
+        <div class="data-grid" id="data-container">
+            <p>Initializing sensors...</p>
+        </div>
+    </section>
 
-  <section id="charts">
-    <h2>📈 Environmental Trends</h2>
-    <div class="chart-grid">
-        <div class="chart-container"><canvas id="tempChart"></canvas></div>
-        <div class="chart-container"><canvas id="humChart"></canvas></div>
-        <div class="chart-container"><canvas id="sunChart"></canvas></div>
-    </div>
+    <section id="charts-section">
+        <div class="section-header">
+            <h2>📈 Environmental Trends</h2>
+        </div>
+        <div class="chart-flex-container">
+            <div class="chart-card"><canvas id="tempChart"></canvas></div>
+            <div class="chart-card"><canvas id="humChart"></canvas></div>
+            <div class="chart-card"><canvas id="sunChart"></canvas></div>
+        </div>
 
-    <h2>🌱 Soil Nutrient Analysis</h2>
-    <div class="chart-grid">
-        <div class="chart-container"><canvas id="moistChart"></canvas></div>
-        <div class="chart-container"><canvas id="nChart"></canvas></div>
-        <div class="chart-container"><canvas id="pChart"></canvas></div>
-        <div class="chart-container"><canvas id="kChart"></canvas></div>
-    </div>
-  </section>
+        <div class="section-header">
+            <h2>🌱 Soil Nutrient Analysis</h2>
+        </div>
+        <div class="chart-flex-container">
+            <div class="chart-card"><canvas id="moistChart"></canvas></div>
+            <div class="chart-card"><canvas id="nChart"></canvas></div>
+            <div class="chart-card"><canvas id="pChart"></canvas></div>
+            <div class="chart-card"><canvas id="kChart"></canvas></div>
+        </div>
+    </section>
 
-  <footer>
-    <p>Powered by VEGA RISC-V · AWS IoT · ESP32</p>
-  </footer>
+    <footer>
+        <p>Project IrriGreat · Developed by SiliconShakti · 2026</p>
+        <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">Hardware: VEGA RISC-V | Cloud: AWS IoT | Connectivity: ESP32</p>
+    </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
