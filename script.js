@@ -1,32 +1,23 @@
 const API_URL = "https://x1m6pukjwc.execute-api.eu-north-1.amazonaws.com/GetData-1";
 let charts = {};
 
-function createChart(ctxId, label, dataArray, color) {
+function createChart(ctxId, datasets) {
     const ctx = document.getElementById(ctxId).getContext('2d');
     if (charts[ctxId]) charts[ctxId].destroy();
 
     charts[ctxId] = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: Array.from({length: dataArray.length}, (_, i) => i + 1),
-            datasets: [{
-                label: label,
-                data: dataArray,
-                borderColor: color,
-                backgroundColor: color + '15',
-                fill: true,
-                tension: 0.4,
-                borderWidth: 2,
-                pointRadius: 0
-            }]
+            labels: datasets[0].data.map((_, i) => i + 1),
+            datasets: datasets
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
+            plugins: { legend: { display: true, labels: { boxWidth: 10, font: { size: 10 } } } },
             scales: {
                 x: { display: false },
-                y: { grid: { color: '#f0f0f0' }, ticks: { color: '#b2bec3' } }
+                y: { grid: { color: '#f0f0f0' }, ticks: { color: '#b2bec3', font: { size: 10 } } }
             }
         }
     });
@@ -34,34 +25,48 @@ function createChart(ctxId, label, dataArray, color) {
 
 async function fetchSensorData() {
     try {
-        const res = await fetch(API_URL);
-        const data = await res.json();
+        const response = await fetch(API_URL);
+        const data = await response.json();
         const i = data.t.length - 1;
 
-        // Update Charts
-        createChart("moistChart", "Moisture", data.m, "#4f7942");
-        createChart("tempChart", "Temperature", data.t, "#e67e22");
+        // 1. Restore Charts (Grouped for 2x2 layout)
+        createChart("tempChart", [
+            { label: 'Temp', data: data.t, borderColor: '#ff7675', tension: 0.4, pointRadius: 0 },
+            { label: 'Humidity', data: data.h, borderColor: '#74b9ff', tension: 0.4, pointRadius: 0 }
+        ]);
+        createChart("moistChart", [
+            { label: 'Moisture', data: data.m, borderColor: '#55efc4', tension: 0.4, pointRadius: 0 },
+            { label: 'Sunlight', data: data.s, borderColor: '#ffeaa7', tension: 0.4, pointRadius: 0 }
+        ]);
+        createChart("nChart", [
+            { label: 'Nitrogen', data: data.n, borderColor: '#4f7942', tension: 0.4, pointRadius: 0 }
+        ]);
+        createChart("pkChart", [
+            { label: 'Phosphorus', data: data.p, borderColor: '#e67e22', tension: 0.4, pointRadius: 0 },
+            { label: 'Potassium', data: data.k, borderColor: '#9b59b6', tension: 0.4, pointRadius: 0 }
+        ]);
 
-        // Update Cards
+        // 2. Restore all 7 Live Cards
         const container = document.getElementById("data-container");
         const metrics = [
-            { icon: "🌡️", label: "Temp", val: data.t[i], unit: "°C" },
-            { icon: "💧", label: "Humidity", val: data.h[i], unit: "%" },
-            { icon: "☀️", label: "Light", val: data.s[i], unit: "%" },
-            { icon: "🌱", label: "Moisture", val: data.m[i], unit: "%" },
-            { icon: "🧪", label: "Nitrogen", val: data.n[i], unit: "" }
+            { l: "Temp", v: data.t[i], u: "°C", i: "🌡️" },
+            { l: "Humid", v: data.h[i], u: "%", i: "💧" },
+            { l: "Sun", v: data.s[i], u: "%", i: "☀️" },
+            { l: "Moist", v: data.m[i], u: "%", i: "🌱" },
+            { l: "Nitro", v: data.n[i], u: "", i: "🧪" },
+            { l: "Phos", v: data.p[i], u: "", i: "🟠" },
+            { l: "Potas", v: data.k[i], u: "", i: "🔵" }
         ];
 
         container.innerHTML = metrics.map(m => `
             <div class="data-card">
-                <span class="icon">${m.icon}</span>
-                <div class="label">${m.label}</div>
-                <div class="value">${m.val}${m.unit}</div>
+                <div class="label">${m.i} ${m.l}</div>
+                <div class="value">${m.v}${m.u}</div>
             </div>
         `).join('');
 
         document.getElementById("time-stamp").innerText = new Date().toLocaleTimeString();
-    } catch (e) { console.error(e); }
+    } catch (err) { console.error("Data Fetch Error:", err); }
 }
 
 setInterval(fetchSensorData, 30000);
