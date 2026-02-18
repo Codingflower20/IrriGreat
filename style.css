@@ -1,92 +1,86 @@
 :root {
     --primary-green: #4f7942;
-    --soft-green-bg: #f4f7f4;
-    --text-main: #2d3436;
-    --text-muted: #636e72;
+    --logo-dark: #2c3e50;
+    --logo-teal: #4b8b8b;
+    --soft-green-bg: #f8faf8;
     --card-white: #ffffff;
-    --soft-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    --divider-color: #e0e6e0;
 }
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--soft-green-bg);
-    color: var(--text-main);
+    color: #2d3436;
     margin: 0;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
 }
 
-.top-accent {
-    height: 6px;
-    background: linear-gradient(90deg, #4f7942, #a8c69f);
+/* Wide container for 4-chart row */
+.wide-container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
+
+.top-accent { height: 6px; background: var(--primary-green); opacity: 0.8; }
+
+/* Proper Logo Styling */
+header { display: flex; justify-content: space-between; padding: 30px 0; align-items: center; }
+.brand-logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon { font-size: 1.8rem; }
+.logo-text { font-size: 1.8rem; color: var(--logo-dark); margin: 0; font-weight: 700; letter-spacing: -0.5px; }
+.logo-text span { color: var(--logo-teal); font-weight: 300; margin-left: 5px; }
+
+/* Pulse Dot */
+.pulse {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+    animation: pulsing 1.5s infinite;
+}
+@keyframes pulsing {
+    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 0;
-}
-
-.logo h1 { font-size: 1.4rem; margin: 0; }
-.logo h1 span { font-weight: 300; color: var(--primary-green); }
-
-.system-status {
-    background: var(--card-white);
-    padding: 8px 18px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    box-shadow: var(--soft-shadow);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; }
-
-/* Grid Layout */
-.data-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-    margin-bottom: 50px;
-}
-
-.data-card {
-    background: var(--card-white);
-    padding: 20px 10px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: var(--soft-shadow);
-    border: 1px solid rgba(0,0,0,0.01);
-}
-
-.data-card .label { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 5px; }
-.data-card .value { font-size: 1.4rem; font-weight: 700; color: var(--primary-green); }
-
-/* Charts Flex Layout (2x2) */
-.chart-flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
+/* Layout Spacing */
+.env-row { display: flex; gap: 50px; margin-bottom: 40px; } /* Increased gap */
+.soil-row { display: flex; gap: 15px; justify-content: space-between; }
 
 .chart-card {
-    flex: 1 1 calc(50% - 20px);
+    flex: 1;
     background: var(--card-white);
-    padding: 20px;
-    border-radius: 22px;
-    box-shadow: var(--soft-shadow);
-    min-height: 250px;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    min-width: 0; /* Prevents flex overflow */
 }
 
-.chart-card h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+.canvas-hold { width: 100%; aspect-ratio: 1 / 1; position: relative; }
+.chart-card h4 { font-size: 0.7rem; color: #95a5a6; margin-bottom: 10px; text-transform: uppercase; }
 
-@media (max-width: 768px) {
-    .chart-card { flex: 1 1 100%; }
+/* Section Dividers */
+.section-divider { display: flex; align-items: center; text-align: center; margin: 40px 0 20px 0; color: var(--primary-green); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; }
+.section-divider::before, .section-divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--divider-color); }
+.section-divider:not(:empty)::before { margin-right: 1.5em; }
+.section-divider:not(:empty)::after { margin-left: 1.5em; }
+
+/* Live Data Grid */
+.data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-bottom: 30px; }
+.data-card { background: var(--card-white); padding: 20px 10px; border-radius: 16px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+.data-card .value { font-size: 1.5rem; font-weight: 700; color: var(--primary-green); }
+.env-row .canvas-hold {
+    aspect-ratio: 2.5 / 1.5 /* Adjust this ratio (e.g., 3/1) to make it even slimmer */
+}
+
+/* Maintain the square look for Soil Trends separately */
+.soil-row .canvas-hold {
+    aspect-ratio: 2.5 / 2;
+}
+
+/* Ensure the cards don't stretch vertically in the Environmental row */
+.env-row .chart-card {
+    flex: 1;
+    min-height: auto; 
 }
